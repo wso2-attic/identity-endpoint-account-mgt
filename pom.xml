@@ -41,6 +41,7 @@
     <modules>
         <module>components/org.wso2.carbon.identity.mgt.endpoint</module>
         <module>features/org.wso2.carbon.identity.account.mgt.endpoint.server.feature</module>
+        <module>features/org.wso2.carbon.identity.account.mgt.endpoint.feature</module>
     </modules>
 
     <repositories>
