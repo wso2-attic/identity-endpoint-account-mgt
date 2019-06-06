@@ -31,6 +31,7 @@ import org.wso2.carbon.user.core.util.UserCoreUtil;
 import org.wso2.carbon.utils.multitenancy.MultitenantUtils;
 import org.wso2.securevault.SecretResolver;
 import org.wso2.securevault.SecretResolverFactory;
+import org.wso2.securevault.commons.MiscellaneousUtil;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -180,25 +181,16 @@ public class IdentityManagementServiceUtil {
             // Iterate through config file, find encrypted properties and resolve them
             while (propertyNames.hasMoreElements()) {
                 String key = (String) propertyNames.nextElement();
-                if (StringUtils
-                        .startsWith(properties.getProperty(key), IdentityManagementEndpointConstants.SECRET_ALIAS)) {
-                    String secretAlias = properties.getProperty(key)
-                                                   .split(IdentityManagementEndpointConstants.SECRET_ALIAS_SEPARATOR,
-                                                          2)[1];
-                    if (secretResolver.isTokenProtected(secretAlias)) {
-                        if (log.isDebugEnabled()) {
-                            log.debug("Resolving and replacing secret for " + secretAlias);
-                        }
-                        // Resolving the secret password.
-                        String value = secretResolver.resolve(secretAlias);
-                        // Replaces the original encrypted property with resolved property
-                        properties.put(key, value);
+                String value = properties.getProperty(key);
+                if (value != null) {
+                    if (StringUtils.startsWith(value, IdentityManagementEndpointConstants.SECRET_ALIAS)){
+                        value = value.split(IdentityManagementEndpointConstants.SECRET_ALIAS_SEPARATOR, 2)[1];
+                        value = secretResolver.isTokenProtected(value) ? secretResolver.resolve(value) : value;
                     } else {
-                        if (log.isDebugEnabled()) {
-                            log.debug("No encryption done for value with key :" + key);
-                        }
+                        value = MiscellaneousUtil.resolve(value, secretResolver);
                     }
                 }
+                properties.put(key, value);
             }
         } else {
             log.warn("Secret Resolver is not present. Failed to resolve encryption in " +
