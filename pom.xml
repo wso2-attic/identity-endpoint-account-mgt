@@ -275,7 +275,7 @@
 
 
     <properties>
-        <carbon.kernel.version>4.4.6</carbon.kernel.version>
+        <carbon.kernel.version>4.4.41-SNAPSHOT</carbon.kernel.version>
 
         <carbon.p2.plugin.version>1.5.3</carbon.p2.plugin.version>
 
@@ -284,14 +284,14 @@
         <project.scm.id>my-scm-server</project.scm.id>
 
         <jersey-version>1.19.1</jersey-version>
-        <identity.framework.version>5.5.0-SNAPSHOT</identity.framework.version>
+        <identity.framework.version>5.12.385-SNAPSHOT</identity.framework.version>
         <identity.account.mgt.endpoint.version>5.5.0-SNAPSHOT</identity.account.mgt.endpoint.version>
         <servlet-api.version>2.5</servlet-api.version>
         <javax.jsp-api.version>2.0</javax.jsp-api.version>
         <javax.servelet.jstl.version>1.2</javax.servelet.jstl.version>
         <commons-lang.wso2.version>2.6.0.wso2v1</commons-lang.wso2.version>
         <com.google.code.gson.version>2.3.1</com.google.code.gson.version>
-        <org.wso2.securevault.version>1.0.0-wso2v2</org.wso2.securevault.version>
+        <org.wso2.securevault.version>1.1.2</org.wso2.securevault.version>
         <com.fasterxml.jackson.version>2.7.0</com.fasterxml.jackson.version>
         <com.fasterxml.jackson.annotation.version>2.7.0</com.fasterxml.jackson.annotation.version>
         <com.fasterxml.jackson.jaxrs-json-provider-version>2.7.0</com.fasterxml.jackson.jaxrs-json-provider-version>
